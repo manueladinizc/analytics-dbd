@@ -1,0 +1,32 @@
+version: 2
+#unique, not_null_relationship_accep_values , alguns tipos de teste
+sources:
+  - name: sap_adw
+    database: dbt-project-1-431420
+    schema: sap_adw
+    tables:
+
+      - name: address
+        description: "This table contains the address of customers."
+        columns:
+          - name: addressid
+            description: Primary key of the address table
+            data_tests:
+              - unique
+              - not_null
+          - name: city
+            description: City of the address
+            data_tests:
+              - not_null
+
+      # - name: orders
+      #   description: >
+      #     One record per order. Includes cancelled and deleted orders.
+      #   columns:
+      #     - name: id
+      #       description: Primary key of the orders table
+      #       tests:
+      #         - unique
+      #         - not_null
+      #     - name: status
+      #       description: Note that the status can change over time

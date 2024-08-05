@@ -1,0 +1,14 @@
+analytics_adventure_works:
+  outputs:
+    dev:
+      dataset: sap_adw
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: service_account.json
+      location: US
+      method: service-account
+      priority: interactive
+      project: dbt-project-1-431420
+      threads: 6
+      type: bigquery
+  target: dev
