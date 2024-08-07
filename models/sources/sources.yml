@@ -7,7 +7,7 @@ sources:
     tables:
 
       - name: address
-        description: "This table contains the address of customers."
+        description: Address information for customers, employees, and vendors
         columns:
           - name: addressid
             description: Primary key of the address table
@@ -18,15 +18,63 @@ sources:
             description: City of the address
             data_tests:
               - not_null
+          - name: stateprovinceid
+            description: Foreign key to the state province table
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('stateprovince')
+                  field: stateprovinceid
 
-      # - name: orders
-      #   description: >
-      #     One record per order. Includes cancelled and deleted orders.
-      #   columns:
-      #     - name: id
-      #       description: Primary key of the orders table
-      #       tests:
-      #         - unique
-      #         - not_null
-      #     - name: status
-      #       description: Note that the status can change over time
+      - name: countryregion
+        description: Country and region information
+        columns:
+          - name: countryregioncode
+            description: Primary key for countryregion
+            data_tests:
+              - unique
+              - not_null
+          - name: name
+            description: Country or region name
+            data_tests:
+              - not_null
+
+      - name: customer
+        description: Current customer information
+        columns:
+          - name: customerid
+            description: Primary key for customer records
+            data_tests:
+              - unique
+              - not_null
+          - name: territoryid
+            description: ID of the territory in which the customer is located
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('sales_territory')
+                  field: territoryid
+
+      - name: person
+        description: Individual customers, contacts, and venders
+        columns:
+          - name: businessentityid
+            description: Primary key for person records
+            data_tests:
+              - unique
+              - not_null
+          - name: person_type
+            description: Type of person
+            data_tests:
+              - not_null
+          - name: firstname
+            description: First name of the person
+            data_tests:
+              - not_null
+          - name: lastname
+            description: Last name of the person
+            data_tests:
+              - not_null
+
+
+ 
