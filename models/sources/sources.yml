@@ -76,5 +76,22 @@ sources:
             data_tests:
               - not_null
 
+      - name: product
+        description: Products sold or used in the manufacture of sold products
+        columns:
+          - name: productid
+            description: Primary key for product records
+            data_tests:
+              - unique
+              - not_null
+          - name: name
+            description: Name of the product
+            data_tests:
+              - not_null
+          - name: productnumber
+            description: Unique product identification number
+            data_tests:
+              - not_null
+
 
  
