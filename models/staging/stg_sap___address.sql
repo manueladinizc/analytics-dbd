@@ -8,4 +8,4 @@ with
     )
 
 select *
-from  address
+from address

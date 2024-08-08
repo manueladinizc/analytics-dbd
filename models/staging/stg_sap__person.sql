@@ -1,9 +1,9 @@
 with
     person as (
         select
-            {{ int_col('businessentityid') }} as business_entity_id,
-            concat('firstname', ' ', 'last_name') as full_name,
-            coalesce(
+            {{ int_col('businessentityid') }} as business_entity_id
+            , concat('firstname', ' ', 'last_name') as full_name
+            , coalesce(
                 case
                     when persontype = 'EM' then 'Employee'
                     when persontype = 'IN' then 'Individual'
