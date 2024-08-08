@@ -7,4 +7,4 @@ with
         from {{ source('sap_adw', 'product') }}
     )
 select *
-from product 
+from product
