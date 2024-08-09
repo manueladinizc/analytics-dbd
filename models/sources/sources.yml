@@ -39,6 +39,37 @@ sources:
             data_tests:
               - not_null
 
+      - name: stateprovince
+        description: State and province information
+        columns:
+          - name: stateprovinceid
+            description: Primary key for stateprovince records
+            data_tests:
+              - unique
+              - not_null
+          - name: stateprovincecode
+            description: State or province code
+            data_tests:
+              - not_null
+          - name: countryregioncode
+            description: Foreign key to countryregion
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('countryregion')
+                  field: countryregioncode
+          - name: name
+            description: State or province name
+            data_tests:
+              - not_null
+          - name: territoryid
+            description: ID of the territory in which the state or province is located
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('salesterritory')
+                  field: territoryid
+
       - name: customer
         description: Current customer information
         columns:
@@ -52,7 +83,7 @@ sources:
             data_tests:
               - not_null
               - relationships:
-                  to: ref('sales_territory')
+                  to: ref('salesterritory')
                   field: territoryid
 
       - name: person
@@ -92,6 +123,33 @@ sources:
             description: Unique product identification number
             data_tests:
               - not_null
+
+      - name: productcategory
+        description: High-level product categorization
+        columns:
+          - name: productcategoryid
+            description: Primary key for productcategory records
+            data_tests:
+              - unique
+              - not_null
+          - name: name
+            description: Category description of the product
+            data_tests:
+              - not_null
+
+      - name: productsubcategory
+        description: Product subcategories
+        columns:
+          - name: productsubcategoryid
+            description: Primary key for productsubcategory records
+            data_tests:
+              - unique
+              - not_null
+          - name: name
+            description: Subcategory description of the product
+            data_tests:
+              - not_null
+
 
 
  
