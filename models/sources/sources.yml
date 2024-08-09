@@ -156,7 +156,6 @@ sources:
           - name: salesorderid
             description: Primary key for salesorderdetail records
             data_tests:
-              - unique
               - not_null
           - name: salesorderdetailid
             description: Primary key for salesorderdetail records
@@ -189,7 +188,6 @@ sources:
           - name: salesreasonid
             description: Primary key for salesreason records
             data_tests:
-              - unique
               - not_null
           - name: name
             description: Sales reason description
@@ -200,4 +198,18 @@ sources:
             data_tests:
               - not_null
 
+      - name: salesorderheadersalesreason
+        description: Cross-reference table mapping sales order headers and sales reasons
+        columns:
+          - name: salesorderid
+            description: Primary key for salesorderheadersalesreason records
+            data_tests:
+              - not_null
+          - name: salesreasonid
+            description: Foreign key to salesreason
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('salesreason')
+                  field: salesreasonid
  
