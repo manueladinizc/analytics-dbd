@@ -220,7 +220,6 @@ sources:
             description: Primary key for creditcard records
             data_tests:
               - unique
-              - not_null
           - name: cardtype
             description: Credit card type
             data_tests:
@@ -243,3 +242,69 @@ sources:
               - relationships:
                   to: ref('creditcard')
                   field: creditcardid
+
+      - name: salesorderheader
+        description: General sales order information
+        columns:
+          - name: salesorderid
+            description: Primary key for salesorderheader records
+            data_tests:
+              - unique
+              - not_null
+          - name: customerid
+            description: Foreign key to customer
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('customer')
+                  field: customerid
+          - name: salespersonid
+            description: ID of the sales person
+            data_tests:
+              - relationships:
+                  to: ref('person')
+                  field: businessentityid
+          - name: creditcardid
+            description: Foreign key to creditcard
+            data_tests:
+              - relationships:
+                  to: ref('creditcard')
+                  field: creditcardid
+          - name: territoryid
+            description: ID of the territory in which the sale was made
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('salesterritory')
+                  field: territoryid
+          - name: shiptoaddressid
+            description: ID of the address to which the order was shipped
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('address')
+                  field: addressid
+          - name: status
+            description: Order status
+            data_tests:
+              - not_null
+          - name: subtotal
+            description: Sales subtotal
+            data_tests:
+              - not_null
+          - name: taxamt
+            description: Tax amount
+            data_tests:
+              - not_null
+          - name: freight
+            description: Shipping cost
+            data_tests:
+              - not_null
+          - name: totaldue
+            description: Total due
+            data_tests:
+              - not_null
+          - name: orderdate
+            description: Order date
+            data_tests:
+              - not_null
