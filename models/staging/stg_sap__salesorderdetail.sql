@@ -1,5 +1,5 @@
 with
-    salesorderdeatil as (
+    salesorderdetail as (
         select
             {{ int_col('salesorderid') }} as sales_order_id
             , {{ int_col('salesorderdetailid') }} as sales_order_detail_id
@@ -11,4 +11,4 @@ with
         from {{ source('sap_adw', 'salesorderdetail') }}
     )
 select *
-from salesorderdeatil
+from salesorderdetail
