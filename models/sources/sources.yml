@@ -212,4 +212,34 @@ sources:
               - relationships:
                   to: ref('salesreason')
                   field: salesreasonid
- 
+
+      - name: creditcard
+        description: Customer credit card information
+        columns:
+          - name: creditcardid
+            description: Primary key for creditcard records
+            data_tests:
+              - unique
+              - not_null
+          - name: cardtype
+            description: Credit card type
+            data_tests:
+              - not_null
+
+      - name: personcreditcard
+        description: Cross-reference table mapping people and credit cards
+        columns:
+          - name: businessentityid
+            description: Primary key for person records
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('person')
+                  field: businessentityid
+          - name: creditcardid
+            description: Foreign key to creditcard
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('creditcard')
+                  field: creditcardid
