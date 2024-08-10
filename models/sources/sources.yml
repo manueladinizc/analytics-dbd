@@ -86,6 +86,32 @@ sources:
                   to: ref('salesterritory')
                   field: territoryid
 
+      - name: salesperson
+        description: Sales representative current information
+        columns:
+          - name: businessentityid
+            description: Primary key for SalesPerson records
+            data_tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: ref('businessentity')
+                  field: businessentityid
+          - name: territoryid
+            description: Territory currently assigned to
+            data_tests:
+              - relationships:
+                  to: ref('salesterritory')
+                  field: territoryid
+          - name: salesytd
+            description: Sales total year to date
+            data_tests:
+              - not_null
+          - name: saleslastyear
+            description: Sales total of previous year
+            data_tests:
+              - not_null
+
       - name: person
         description: Individual customers, contacts, and venders
         columns:
