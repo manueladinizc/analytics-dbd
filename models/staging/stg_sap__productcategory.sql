@@ -16,10 +16,10 @@ with
 
     join_category_subcategory as (
         select
-            ps.product_subcategory_id,
-            ps.product_subcategory_name,
-            pc.product_category_id,
-            pc.product_category_name
+            ps.product_subcategory_id
+            , ps.product_subcategory_name
+            , pc.product_category_id
+            , pc.product_category_name
         from productsubcategory ps
         join productcategory pc
             on ps.product_category_id = pc.product_category_id

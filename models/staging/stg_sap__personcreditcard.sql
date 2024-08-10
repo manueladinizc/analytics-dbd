@@ -15,9 +15,9 @@ with
 
     join_creditcard_personcreditcard as (
         select 
-            cc.credit_card_id
+            pcc.business_entity_id
+            , cc.credit_card_id
             , cc.card_type
-            , pcc.business_entity_id
         from creditcard cc
         join personcreditcard pcc
             on cc.credit_card_id = pcc.credit_card_id
