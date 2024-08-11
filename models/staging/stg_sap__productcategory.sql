@@ -21,7 +21,7 @@ with
             , pc.product_category_id
             , pc.product_category_name
         from productsubcategory ps
-        join productcategory pc
+        inner join productcategory pc
             on ps.product_category_id = pc.product_category_id
     )
 

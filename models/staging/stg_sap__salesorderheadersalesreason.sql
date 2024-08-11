@@ -21,7 +21,7 @@ with
             , sr.sales_reason_description
             , sr.reason_type
         from salesorderheadersalesreason sohsr
-        join salesreason sr
+        inner join salesreason sr
             on sohsr.sales_reason_id = sr.sales_reason_id
     )
 select *

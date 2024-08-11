@@ -334,3 +334,21 @@ sources:
             description: Order date
             data_tests:
               - not_null
+
+      - name: salesterritory
+        description: Sales territory lookup table
+        columns:
+          - name: territoryid
+            description: Primary key for SalesTerritory records
+            data_tests:
+              - not_null
+          - name: name
+            description: Sales territory description
+            data_tests:
+              - not_null
+          - name: countryregioncode
+            description: Standard country or region code
+            data_tests:
+              - not_null
+          - name: group
+            description: Geographic area to which the sales territory belongs
