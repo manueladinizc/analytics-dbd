@@ -3,24 +3,24 @@ with
         select
             distinct product_id
         from {{ ref('stg_sap__salesorderdetail') }}
-    ),
+    )
 
-    product as (
+    , product as (
         select *
         from {{ ref('stg_sap__product') }}
-    ),
+    )
 
-    productcategory as (
+    , productcategory as (
         select *
         from {{ ref('stg_sap__productcategory') }}
-    ),
+    )
 
-    productsubcategory as (
+    , productsubcategory as (
         select *
         from {{ ref('stg_sap__productsubcategory') }}
-    ),
+    )
 
-    final_transformation as (
+    , final_transformation as (
         select
             row_number() over (order by dps.product_id) as sk_product
             , p.product_id
