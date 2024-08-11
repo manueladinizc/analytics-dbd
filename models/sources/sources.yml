@@ -1,5 +1,5 @@
 version: 2
-#unique, not_null_relationship_accep_values , alguns tipos de teste
+
 sources:
   - name: sap_adw
     database: dbt-project-1-431420

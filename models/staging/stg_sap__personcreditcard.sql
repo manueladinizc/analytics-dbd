@@ -4,16 +4,16 @@ with
           {{ int_col('creditcardid') }} as credit_card_id
           , {{ string_col('cardtype') }} as card_type
         from {{ source('sap_adw', 'creditcard') }}
-    ),
+    )
 
-    personcreditcard as (
+    , personcreditcard as (
         select 
             {{ int_col('creditcardid') }} as credit_card_id
             , {{ string_col('businessentityid') }} as business_entity_id
     from {{ source('sap_adw', 'personcreditcard') }}
-    ),
+    )
 
-    join_creditcard_personcreditcard as (
+    , join_creditcard_personcreditcard as (
         select 
             pcc.business_entity_id
             , cc.credit_card_id

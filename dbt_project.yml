@@ -39,9 +39,9 @@ models:
     staging:
       +materialized: table
       +schema: adw_staging
-    # marts:
-    #   +materialized: table
-    #   +schema: adw_marts
+    marts:
+      +materialized: table
+      +schema: adw_marts
 
 
 
