@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer person information
+    columns:
+      - name: sk_customer
+        description: Surrogate key for the customer
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+
+      - name: full_name
+        description: Full name of the customer
+
+      - name: person_type
+        description: Type of person (Employee, Individual, Store Person, etc.)
+
+      - name: territory_id
+        description: Identifier for the customer territory
+
+      - name: store_id
+        description: Identifier for the store associated with the customer
