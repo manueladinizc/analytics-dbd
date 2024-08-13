@@ -352,3 +352,22 @@ sources:
               - not_null
           - name: group
             description: Geographic area to which the sales territory belongs
+
+      - name: store
+        description: Customers (resellers) of Adventure Works products
+        columns:
+          - name: businessentityid
+            description: Primary key. Foreign key to Customer.BusinessEntityID
+            data_tests:
+              - unique
+              - not_null
+          - name: name
+            description: Store name
+            data_tests:
+              - not_null
+          - name: salespersonid
+            description: ID of the sales person
+            data_tests:
+              - relationships:
+                  to: ref('person')
+                  field: businessentityid
