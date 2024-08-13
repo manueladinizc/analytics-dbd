@@ -27,7 +27,7 @@ with
 
     , final_transformation as (
           select
-              row_number() over (order by dss.ship_to_address_id) as sk_ship_to_address_id,
+              row_number() over (order by dss.ship_to_address_id) as sk_locales,
               a.address_id,
               a.city,
               sp.state_province_name,

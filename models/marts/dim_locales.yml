@@ -4,7 +4,7 @@ models:
   - name: dim_locales
     description: Adventureworks location information
     columns:
-      - name: sk_ship_to_address_id
+      - name: sk_locales
         description: Surrogate key for the ship-to address
         data_tests:
           - unique

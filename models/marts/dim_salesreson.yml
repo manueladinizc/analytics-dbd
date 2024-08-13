@@ -4,7 +4,7 @@ models:
   - name: dim_salesreason
     description: Table of customer purchase reasons
     columns:
-      - name: sk_sales_order
+      - name: sk_sales_reason
         description: Surrogate key for the sales order id
         data_tests:
           - not_null
