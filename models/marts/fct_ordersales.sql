@@ -27,14 +27,56 @@ with
         from {{ ref('stg_sap__salesorderheader') }}
     )
 
+    , dim_customer as (
+        select
+            sk_customer
+            , customer_id
+        from {{ ref('dim_customer') }}
+    )
+
+    , dim_dates as (
+        select
+            sk_date_full
+            , date_full
+        from {{ ref('dim_dates') }}
+    )
+
+    , dim_locales as (
+        select
+            sk_locales
+            , locales_id
+        from {{ ref('dim_locales') }}
+    )
+
+    , dim_personcreditcard as (
+        select
+            sk_person_credit_card
+            , credit_card_id
+        from {{ ref('dim_personcreditcard') }}
+    )
+
+    , dim_products as (
+        select
+            sk_product
+            , product_id
+        from {{ ref('dim_products') }}
+    )
+
+    , dim_salesreason as (
+        select
+            sk_sales_reason
+            , sales_reason_id
+        from {{ ref('dim_salesreason') }}
+    )
+
     , final_transformation as (
         select
-            row_number() over (order by soh.customer_id) as fk_customer
-            , row_number() over (order by soh.ship_to_address_id) as fk_locales
-            , row_number() over (order by soh.credit_card_id) as fk_person_credit_card
-            , row_number() over (order by soh.sales_order_id) as sk_sales_reason
-            , row_number() over (order by soh.order_date) as fk_date_full
-            , row_number() over (order by sod.product_id) as fk_product
+            d_customer.sk_customer as fk_customer
+            , d_locales.sk_locales as fk_locales
+            , d_personcreditcard.sk_person_credit_card as fk_person_credit_card
+            , d_salesreason.sk_sales_reason as fk_sales_reason
+            , d_dates.sk_date_full as fk_date_full
+            , d_products.sk_product as fk_product
 
             , sod.sales_order_id
             , sod.order_product_qty
@@ -51,6 +93,19 @@ with
         from salesorderdetail sod
         left join salesorderheader soh
             on sod.sales_order_id = soh.sales_order_id
+        left join dim_customer d_customer
+            on soh.customer_id = d_customer.customer_id
+        left join dim_locales d_locales
+            on soh.ship_to_address_id = d_locales.locales_id
+        left join dim_personcreditcard d_personcreditcard
+            on soh.credit_card_id = d_personcreditcard.credit_card_id
+        left join dim_salesreason d_salesreason
+            on soh.sales_order_id = d_salesreason.sales_reason_id
+        left join dim_dates d_dates
+            on soh.order_date = d_dates.date_full
+        left join dim_products d_products
+            on sod.product_id = d_products.product_id
     )
+
 select *
 from final_transformation

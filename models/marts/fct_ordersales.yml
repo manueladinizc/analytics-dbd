@@ -1,53 +1,62 @@
 version: 2
 
 models:
-  - name: fact_sales_orders
-    description: Fact table that stores sales order information, combining order details and order header.
+  - name: fct_ordersales
+    description: Fact table containing details of sales orders, including information about orders, products, customers, credit cards, and sales reasons.
     columns:
-      - name: fk_customer
-        description: Foreign key to the customer dimension table.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: fk_locales
-        description: Foreign key to the shipping locations dimension table.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: fk_person_credit_card
-        description: Foreign key to the credit card dimension table.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: fk_sales_person
-        description: Foreign key to the sales person dimension table.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: fk_date_full
-        description: Foreign key to the date dimension table, referencing the full date of the order.
-        data_tests:
-          - not_null
-          - unique
-
-      - name: fk_product
-        description: Foreign key to the product dimension table.
-        data_tests:
-          - not_null
-          - unique
-
       - name: sales_order_id
         description: Unique identifier for the sales order.
         data_tests:
           - not_null
-          - unique
+
+      - name: fk_customer
+        description: Foreign key referencing the customer in the customer dimension table.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: sk_customer
+
+      - name: fk_locales
+        description: Foreign key referencing the locale in the locales dimension table.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_locales')
+              field: sk_locales
+
+      - name: fk_person_credit_card
+        description: Foreign key referencing the credit card in the credit card dimension table.
+        data_tests:
+          - relationships:
+              to: ref('dim_personcreditcard')
+              field: sk_person_credit_card
+
+      - name: fk_sales_reason
+        description: Surrogate key for the sales reason in the sales reason dimension table.
+        data_tests:
+          - relationships:
+              to: ref('dim_salesreason')
+              field: sk_sales_reason
+
+      - name: fk_date_full
+        description: Foreign key referencing the date in the dates dimension table.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: sk_date_full
+
+      - name: fk_product
+        description: Foreign key referencing the product in the products dimension table.
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: sk_product
 
       - name: order_product_qty
-        description: Quantity of products ordered in the sales order.
+        description: Quantity of products in the order.
         data_tests:
           - not_null
 
@@ -57,17 +66,17 @@ models:
           - not_null
 
       - name: unit_price_discount
-        description: Percentage discount applied to the unit price.
+        description: Discount applied to the unit price of the product.
         data_tests:
           - not_null
 
       - name: total_price
-        description: Total price of the order, calculated as unit_price * order_product_qty.
+        description: Total price of the order before discount.
         data_tests:
           - not_null
 
       - name: total_price_with_discounted
-        description: Total price of the order with discount applied.
+        description: Total price of the order after discount is applied.
         data_tests:
           - not_null
 
@@ -75,19 +84,21 @@ models:
         description: Status of the order.
         data_tests:
           - not_null
+          - accepted_values:
+              values: [Pending, Completed, Shipped, Cancelled]
 
       - name: tax_amount
-        description: Tax amount applied to the order.
+        description: Amount of tax applied to the order.
         data_tests:
           - not_null
 
       - name: freight
-        description: Freight amount associated with the order.
+        description: Freight cost for the order.
         data_tests:
           - not_null
 
       - name: transaction_amount
-        description: Total transaction amount, including tax and freight.
+        description: Total transaction amount of the order.
         data_tests:
           - not_null
 
