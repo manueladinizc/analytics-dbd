@@ -19,6 +19,7 @@ with
         from distinct_credit_card_id_personcreditcard dccp
         left join personcreditcard pcc
             on dccp.credit_card_id = pcc.credit_card_id
+            where pcc.credit_card_id is not null
     )
 select *
 from final_transformation
