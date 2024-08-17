@@ -1,0 +1,97 @@
+version: 2
+
+models:
+  - name: fact_sales_orders
+    description: Fact table that stores sales order information, combining order details and order header.
+    columns:
+      - name: fk_customer
+        description: Foreign key to the customer dimension table.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fk_locales
+        description: Foreign key to the shipping locations dimension table.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fk_person_credit_card
+        description: Foreign key to the credit card dimension table.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fk_sales_person
+        description: Foreign key to the sales person dimension table.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fk_date_full
+        description: Foreign key to the date dimension table, referencing the full date of the order.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: fk_product
+        description: Foreign key to the product dimension table.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: sales_order_id
+        description: Unique identifier for the sales order.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_product_qty
+        description: Quantity of products ordered in the sales order.
+        data_tests:
+          - not_null
+
+      - name: unit_price
+        description: Unit price of the product in the order.
+        data_tests:
+          - not_null
+
+      - name: unit_price_discount
+        description: Percentage discount applied to the unit price.
+        data_tests:
+          - not_null
+
+      - name: total_price
+        description: Total price of the order, calculated as unit_price * order_product_qty.
+        data_tests:
+          - not_null
+
+      - name: total_price_with_discounted
+        description: Total price of the order with discount applied.
+        data_tests:
+          - not_null
+
+      - name: order_status
+        description: Status of the order.
+        data_tests:
+          - not_null
+
+      - name: tax_amount
+        description: Tax amount applied to the order.
+        data_tests:
+          - not_null
+
+      - name: freight
+        description: Freight amount associated with the order.
+        data_tests:
+          - not_null
+
+      - name: transaction_amount
+        description: Total transaction amount, including tax and freight.
+        data_tests:
+          - not_null
+
+      - name: order_date
+        description: Date when the order was placed.
+        data_tests:
+          - not_null
