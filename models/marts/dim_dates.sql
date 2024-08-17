@@ -1,4 +1,4 @@
-with 
+with
     dates_raw as (
     {{ dbt_utils.date_spine(
         datepart="day",
@@ -10,7 +10,7 @@ with
 
     , days_info as (
         select 
-            cast(date_day as date) as day_date,
+            cast(date_day as date) as date_full,
             extract(day from date_day) as day_param,
             extract(month from date_day) as month_param,
             extract(year from date_day) as year_param,
@@ -32,10 +32,11 @@ with
     )
 
 select
-    day_date,
-    day_param,
-    month_param,
-    month_name,
-    year_param
+    row_number() over (order by date_full) as sk_date_full
+    , date_full
+    , day_param
+    , month_param
+    , month_name
+    , year_param
 from
     days_info

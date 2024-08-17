@@ -4,7 +4,7 @@ models:
   - name: dim_dates
     description: Model that generates a date table with detailed information such as day, month, year, and month name in pt-BR.
     columns:
-      - name: day_date
+      - name: date_full
         description: Complete date in the format YYYY-MM-DD.
         data_tests:
           - not_null
