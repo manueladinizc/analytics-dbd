@@ -371,3 +371,20 @@ sources:
               - relationships:
                   to: ref('person')
                   field: businessentityid
+
+      - name: employee
+        description: Employee names, titles, and identification numbers
+        columns:
+          - name: businessentityid
+            description: Primary key for employee records
+            data_tests:
+              - unique
+              - not_null
+          - name: jobtitle
+            description: Job title of the employee
+            data_tests:
+              - not_null
+          - name: gender
+            description: Gender of the employee
+            data_tests:
+              - not_null
