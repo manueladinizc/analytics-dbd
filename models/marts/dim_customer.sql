@@ -15,6 +15,11 @@ with
         from {{ ref('stg_sap__person') }}
     )
 
+    , store as (
+        select *
+        from {{ ref('stg_sap__store') }}
+    )
+
     , final_transformation as (
         select
               row_number() over (order by dcs.customer_id) as sk_customer
@@ -23,11 +28,14 @@ with
               , p.person_type
               , c.territory_id
               , c.store_id
+              , s.store_name
           from distinct_customer_id_salesorderheader dcs
           left join customer c
               on dcs.customer_id = c.customer_id
           left join person p
               on c.person_id = p.business_entity_id
+          left join store s
+                on c.store_id = s.business_entity_id
     )
 select *
 from final_transformation
