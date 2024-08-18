@@ -17,12 +17,12 @@ with
 
     , final_transformation as (
         select
-              row_number() over (order by dcs.customer_id) as sk_customer,
-              c.customer_id,
-              p.full_name,
-              p.person_type,
-              c.territory_id,
-              c.store_id
+              row_number() over (order by dcs.customer_id) as sk_customer
+              , c.customer_id
+              , p.full_name
+              , p.person_type
+              , c.territory_id
+              , c.store_id
           from distinct_customer_id_salesorderheader dcs
           left join customer c
               on dcs.customer_id = c.customer_id

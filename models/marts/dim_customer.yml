@@ -6,23 +6,29 @@ models:
     columns:
       - name: sk_customer
         description: Surrogate key for the customer
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: customer_id
         description: Unique identifier for the customer
-        tests:
+        data_tests:
           - not_null
 
       - name: full_name
         description: Full name of the customer
+        data_tests:
+          - not_null
 
       - name: person_type
         description: Type of person (Employee, Individual, Store Person, etc.)
+        data_tests:
+          - not_null
 
       - name: territory_id
         description: Identifier for the customer territory
+        data_tests:
+          - not_null
 
       - name: store_id
         description: Identifier for the store associated with the customer
