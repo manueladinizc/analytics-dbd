@@ -22,7 +22,7 @@ with
             , order_status
             , tax_amount
             , freight
-            , total_due as transaction_amount
+            , transaction_amount
             , order_date
         from {{ ref('stg_sap__salesorderheader') }}
     )
@@ -77,6 +77,8 @@ with
             , d_salesreason.sk_sales_reason as fk_sales_reason
             , d_dates.sk_date_full as fk_date_full
             , d_products.sk_product as fk_product
+            , soh.sales_person_id as fk_seller
+            , sod.sales_order_id as fk_sales_order
 
             , sod.sales_order_id
             , sod.order_product_qty

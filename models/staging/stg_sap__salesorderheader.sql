@@ -10,7 +10,7 @@ with
             , cast(subtotal as numeric) as sub_total
             , cast(taxamt as numeric) as tax_amount
             , cast(freight as numeric) as freight
-            , cast(totaldue as numeric) as total_due
+            , cast(totaldue as numeric) as transaction_amount
             , date(orderdate) as order_date
             , coalesce(
                 case
