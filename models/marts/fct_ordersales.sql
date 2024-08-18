@@ -65,31 +65,8 @@ with
     , dim_salesreason as (
         select
             sk_sales_reason
-            , sales_reason_id
+            , sales_order_id
         from {{ ref('dim_salesreason') }}
-    )
-
-    , store as (
-        select
-            business_entity_id as store_id
-            , store_name
-        from {{ ref('stg_sap__store') }}
-    )
-
-    , salesperson as (
-        select
-            business_entity_id as sales_person_id
-        from {{ ref('stg_sap__person') }}
-    )
-
-    , join_store_salesperson as (
-        select
-            s.store_id
-            , s.store_name
-            , sp.sales_person_id
-        from store s
-        left join salesperson sp
-            on s.store_id = sp.sales_person_id
     )
 
     , final_transformation as (
@@ -115,9 +92,6 @@ with
             , soh.freight
             , soh.transaction_amount
             , soh.order_date
-
-            , s.store_id
-            , s.store_name
         from salesorderdetail sod
         left join salesorderheader soh
             on sod.sales_order_id = soh.sales_order_id
@@ -128,13 +102,11 @@ with
         left join dim_personcreditcard d_personcreditcard
             on soh.credit_card_id = d_personcreditcard.credit_card_id
         left join dim_salesreason d_salesreason
-            on soh.sales_order_id = d_salesreason.sales_reason_id
+            on soh.sales_order_id = d_salesreason.sales_order_id
         left join dim_dates d_dates
             on soh.order_date = d_dates.date_full
         left join dim_products d_products
             on sod.product_id = d_products.product_id
-        left join join_store_salesperson s
-            on soh.sales_person_id = s.sales_person_id
     )
 
 select *
