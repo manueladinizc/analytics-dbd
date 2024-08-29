@@ -24,6 +24,7 @@ with
             , freight
             , transaction_amount
             , order_date
+            , online_order_flag
         from {{ ref('stg_sap__salesorderheader') }}
     )
 
@@ -92,6 +93,7 @@ with
             , soh.freight
             , soh.transaction_amount
             , soh.order_date
+            , soh.online_order_flag
         from salesorderdetail sod
         left join salesorderheader soh
             on sod.sales_order_id = soh.sales_order_id

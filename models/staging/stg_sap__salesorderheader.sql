@@ -12,6 +12,7 @@ with
             , cast(freight as numeric) as freight
             , cast(totaldue as numeric) as transaction_amount
             , date(orderdate) as order_date
+            , cast(onlineorderflag as boolean) as online_order_flag
             , coalesce(
                 case
                     when status = 1 then 'In process'

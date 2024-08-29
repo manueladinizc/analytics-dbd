@@ -334,6 +334,10 @@ sources:
             description: Order date
             data_tests:
               - not_null
+          - name: onlineorderflag
+            description: Online order flag
+            data_tests:
+              - not_null
 
       - name: salesterritory
         description: Sales territory lookup table
