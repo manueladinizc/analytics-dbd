@@ -1,25 +1,51 @@
-# Indicium Academy
+# Desafio Final de Dados
 
-Repositório para ser utilizado no desafio para a obtenção da certificação de Analytics Engineer by Indicium. Faça o fork deste repositório e o utilize durante o desafio para fazer a insgestão das tabelas do SAP do Adventure Works.
+## Documentos
+
+[Diagrama conceitual](/documents/conceptual_diagram_adw.pdf)
+
+[Relatório do projeto](/documents/report_adw.pdf)
+
+[Notebook de previsão de demanda](/analytics_adw/sales_analytics.ipynb)
+
+## Resumo do projeto
+
+O projeto para a Adventure Works foca em transformar a análise de dados da empresa com três etapas principais:
+
+1. Modelagem Dimensional: Criação de um data warehouse usando Google BigQuery e dbt, organizando dados de vendas e produção.
+2. Visualização de Dados: Desenvolvimento de dashboards interativos para análise visual dos dados.
+3. Previsão de Demanda: Aplicação de modelos de séries temporais para prever a demanda futura e identificar padrões sazonais.
+
+O objetivo é otimizar a distribuição de produtos e aprimorar a tomada de decisões estratégicas.
 
 ## Instruções
 
-Todas as tabelas do banco fonte do SAP da Adventure Works serão carregadas como seeds pelo dbt. Os arquivos .csv com os dados já estão na pasta de seeds.
+*Configuração de ambiente*
 
-Para fazer o carregamento de todas as tabelas usem o comando:
-- `dbt seed`
+1. Clone o repositório
+```
+  git clone https://github.com/manueladinizc/analytics-dbd.git
+  cd analytics-dbt 
+```
 
-Para carregar uma tabela especifíca utilizem o comando
-- `dbt seed -s nome_do_csv`
+2. Criar ambiente virtual
+  ```
+  python -m venv venv
+  source venv/bin/activate
+  ```
 
-### Problemas comuns
+3. Instalar dependencias
+```
+  pip install -r requirements.txt
+```
 
-Em caso a linha de comando do dbt fique com o status de estar sempre carregando, ou, o job do comando `dbt seed` fique rodando indefinitivamente mesmo após as 64 tabelas forem carregadas você precisará reiniciar o terminal. Para isso, clique nos três pontos no canto inferior direito ou no lado direito da linha de comando e escolha a opção `Restart IDE`.
+4. Configure o perfil do DBT no arquivo profiles.yml
 
+5. Certifique-se de que as credenciais do BigQuery estão corretamente configuradas no arquivo profiles.yml
 
-## Recursos:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](http://community.getbdt.com/) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+6. Rodar e testar modelo
+```
+  dbt run
+
+  dbt test
+```
