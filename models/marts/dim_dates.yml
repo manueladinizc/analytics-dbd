@@ -24,7 +24,7 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: 
+              values:
                 - 'January'
                 - 'February'
                 - 'March'

@@ -15,6 +15,7 @@ with
             sales_order_id
             , sales_person_id
             , transaction_amount
+            , order_date
         from {{ ref('stg_sap__salesorderheader') }}
     )
 
@@ -39,6 +40,7 @@ with
             sod.sales_order_id
             , soh.sales_person_id
             , soh.transaction_amount
+            , extract(year from soh.order_date) as order_year
             , sod.total_price
             , sod.total_price_with_discounted
             , sod.order_qty
@@ -53,27 +55,31 @@ with
             on soh.sales_person_id = p.business_entity_id
         left join employee e
             on soh.sales_person_id = e.business_entity_id
-            where soh.sales_person_id is not null
+        where soh.sales_person_id is not null
     )
 
     , agg_sales_seller as (
         select
-            sales_person_id as sk_seller
+            sales_person_id
+            , sales_order_id
             , first_name
             , last_name
             , job_title
             , gender
+            , order_year
             , sum(transaction_amount) as total_transaction_amount
             , sum(total_price) as total_price
             , sum(total_price_with_discounted) as total_price_with_discounted
             , sum(order_qty) as total_order_qty
         from join_sales
         group by
-            sales_person_id
+            sales_order_id
+            , sales_person_id
             , first_name
             , last_name
             , job_title
             , gender
+            , order_year
     )
 select *
 from agg_sales_seller

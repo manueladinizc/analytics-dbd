@@ -6,7 +6,9 @@
 
 [Relatório do projeto](/documents/report_adw.pdf)
 
-[Dashboard](/documents/bi_adw.pbix)
+[Arquivo para o dashboard](/documents/bi_adw.pbix)
+
+[Video para apresentação do dashboard]()
 
 [Notebook de previsão de demanda](/analytics_adw/sales_analytics.ipynb)
 

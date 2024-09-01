@@ -41,3 +41,11 @@ models:
         description: Gender of the seller
         data_tests:
           - not_null
+      - name: order_date
+        description: Date of the order
+        data_tests:
+          - not_null
+      - name: sales_order_id
+        description: Order ID
+        data_tests:
+          - not_null
