@@ -25,8 +25,12 @@ models:
         description: Total quantity of products sold by the seller
         data_tests:
           - not_null
-      - name: full_name
-        description: Full name of the seller
+      - name: first_name
+        description: First name of the seller
+        data_tests:
+          - not_null
+      - name: last_name
+        description: Last name of the seller
         data_tests:
           - not_null
       - name: job_title

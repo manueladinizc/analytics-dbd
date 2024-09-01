@@ -15,18 +15,18 @@ with
             extract(month from date_day) as month_param,
             extract(year from date_day) as year_param,
             case
-                when extract(month from date_day) = 1 then 'Janeiro'
-                when extract(month from date_day) = 2 then 'Fevereiro'
-                when extract(month from date_day) = 3 then 'Março'
-                when extract(month from date_day) = 4 then 'Abril'
-                when extract(month from date_day) = 5 then 'Maio'
-                when extract(month from date_day) = 6 then 'Junho'
-                when extract(month from date_day) = 7 then 'Julho'
-                when extract(month from date_day) = 8 then 'Agosto'
-                when extract(month from date_day) = 9 then 'Setembro'
-                when extract(month from date_day) = 10 then 'Outubro'
-                when extract(month from date_day) = 11 then 'Novembro'
-                else 'Dezembro'
+                when extract(month from date_day) = 1 then 'January'
+                when extract(month from date_day) = 2 then 'February'
+                when extract(month from date_day) = 3 then 'March'
+                when extract(month from date_day) = 4 then 'April'
+                when extract(month from date_day) = 5 then 'May'
+                when extract(month from date_day) = 6 then 'June'
+                when extract(month from date_day) = 7 then 'July'
+                when extract(month from date_day) = 8 then 'August'
+                when extract(month from date_day) = 9 then 'September'
+                when extract(month from date_day) = 10 then 'October'
+                when extract(month from date_day) = 11 then 'November'
+                else 'December'
             end as month_name
         from dates_raw
     )

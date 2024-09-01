@@ -25,19 +25,18 @@ models:
           - not_null
           - accepted_values:
               values: 
-                - 'Janeiro'
-                - 'Fevereiro'
-                - 'Março'
-                - 'Abril'
-                - 'Maio'
-                - 'Junho'
-                - 'Julho'
-                - 'Agosto'
-                - 'Setembro'
-                - 'Outubro'
-                - 'Novembro'
-                - 'Dezembro'
-          
+                - 'January'
+                - 'February'
+                - 'March'
+                - 'April'
+                - 'May'
+                - 'June'
+                - 'July'
+                - 'August'
+                - 'September'
+                - 'October'
+                - 'November'
+                - 'December'
       - name: year_param
         description: Year, extracted from the date.
         data_tests:

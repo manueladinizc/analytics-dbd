@@ -15,8 +15,13 @@ models:
         data_tests:
           - not_null
 
-      - name: full_name
-        description: Full name of the customer
+      - name: first_name
+        description: First name of the customer
+        data_tests:
+          - not_null
+
+      - name: last_name
+        description: Last name of the customer
         data_tests:
           - not_null
 
@@ -35,3 +40,6 @@ models:
 
       - name: store_name
         description: Name of the store associated with the customer
+
+      - name: online_order_flag
+        description: Flag indicating if the customer is an online order customer

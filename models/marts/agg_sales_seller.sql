@@ -29,7 +29,8 @@ with
     , person as (
         select
             business_entity_id
-            , full_name
+            , first_name
+            , last_name
         from {{ ref('stg_sap__person') }}
     )
 
@@ -41,7 +42,8 @@ with
             , sod.total_price
             , sod.total_price_with_discounted
             , sod.order_qty
-            , p.full_name
+            , p.first_name
+            , p.last_name
             , e.job_title
             , e.gender
         from sales_order_detail sod
@@ -57,7 +59,8 @@ with
     , agg_sales_seller as (
         select
             sales_person_id as sk_seller
-            , full_name
+            , first_name
+            , last_name
             , job_title
             , gender
             , sum(transaction_amount) as total_transaction_amount
@@ -67,7 +70,8 @@ with
         from join_sales
         group by
             sales_person_id
-            , full_name
+            , first_name
+            , last_name
             , job_title
             , gender
     )

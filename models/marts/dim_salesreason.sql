@@ -16,7 +16,7 @@ with
             row_number() over (order by soh.sales_order_id) as sk_sales_reason,
             soh.sales_order_id,
             sohsr.sales_reason_id,
-            coalesce(sohsr.sales_reason_description, 'not provided') as sales_reason_description,
+            coalesce(sohsr.sales_reason_description, 'Other') as sales_reason_description,
             coalesce(sohsr.reason_type, 'not provided') as reason_type
         from salesorderheader soh
         left join salesorderheadersalesreason sohsr
