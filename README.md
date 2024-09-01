@@ -6,6 +6,8 @@
 
 [Relatório do projeto](/documents/report_adw.pdf)
 
+[Dashboard](/documents/bi_adw.pbix)
+
 [Notebook de previsão de demanda](/analytics_adw/sales_analytics.ipynb)
 
 ## Resumo do projeto
