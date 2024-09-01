@@ -8,7 +8,7 @@
 
 [Arquivo para o dashboard](/documents/bi_adw.pbix)
 
-[Video para apresentação do dashboard]()
+[Video com a apresentação do dashboard](https://youtu.be/iivDvnnTS80)
 
 [Notebook de previsão de demanda](/analytics_adw/sales_analytics.ipynb)
 
@@ -20,7 +20,6 @@ O projeto para a Adventure Works foca em transformar a análise de dados da empr
 2. Visualização de Dados: Desenvolvimento de dashboards interativos para análise visual dos dados.
 3. Previsão de Demanda: Aplicação de modelos de séries temporais para prever a demanda futura e identificar padrões sazonais.
 
-O objetivo é otimizar a distribuição de produtos e aprimorar a tomada de decisões estratégicas.
 
 ## Instruções
 

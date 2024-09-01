@@ -4,11 +4,7 @@ models:
   - name: agg_sales_seller
     description: Aggregated table summarizing sales by seller, including total transactions, total revenue, discounted revenue, and total products sold
     columns:
-      - name: sk_seller
-        description: Surrogate key for the seller
-        data_tests:
-          - not_null
-          - unique
+
       - name: total_transaction_amount
         description: Total transaction amount for the seller
         data_tests:
@@ -41,9 +37,9 @@ models:
         description: Gender of the seller
         data_tests:
           - not_null
-      - name: order_date
-        description: Date of the order
-        data_tests:
+      - name: order_year
+        description: order year
+        data_test:
           - not_null
       - name: sales_order_id
         description: Order ID
